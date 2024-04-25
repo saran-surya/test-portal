@@ -44,6 +44,14 @@ This is a test portal that work on the basis of input from a JSON file
 ## Ground Rules and Pre-Requisites
 * Always set the screen aspect ratio to 100%
 * Do-Not refresh your browser in between the test (as you will loose data)
+* The complete site works with the help of Tailwindcss thus minimising the efforts of creating custom css
+
+
+## What can be added
+* A Moniter (window listners)
+    - Check if the mouse cursor moves out of the screen
+    - Check if the full-screen mode is turned off
+    - check if tab switch was performed
 
 ## Project Images
 ![image](https://github.com/saran-surya/test-portal/assets/59312489/477fc057-43f3-4a18-a255-39707d54d6f2)

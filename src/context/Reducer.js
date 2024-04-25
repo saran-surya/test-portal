@@ -2,7 +2,6 @@ let reducer = (state, action) => {
     switch (action.type) {
         case 'SET-INITIAL':
             // console.log("Rendering-down and setting the questions")
-            console.log(action.payload)
             state.allQuestions = action.payload
             state.totalQuestions = (action.payload).length
             state.testActive = true
@@ -30,7 +29,7 @@ let reducer = (state, action) => {
 
         case 'ANSWERED-Q':
             // console.log('Answered the question')
-            console.log(state.allQuestions[state.currQ][(state.currQ) + 1])
+            // Every question with the answer selected will toggle the Qstate to the pre-defined vars
             state.allQuestions[state.currQ][(state.currQ) + 1].Qstate = "ANSWERED"
             state.allQuestions[state.currQ][(state.currQ) + 1].Marked =  action.payload
             return {
@@ -41,7 +40,6 @@ let reducer = (state, action) => {
             // console.log("Submitting the test assesment")
             state.testActive = false
             state.totalScore = action.payload
-            console.log(action.payload)
 
             return {
                 ...state

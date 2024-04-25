@@ -62,6 +62,8 @@ export const TimerComponent = () => {
         clearTimer(getDeadTime());
     }, []);
 
+    // we check if the timer has hit our end mark
+    // and once done we do a auto-submit for the same
     useEffect(() => {
         if (timer == "00:00") {
             submitTest()
