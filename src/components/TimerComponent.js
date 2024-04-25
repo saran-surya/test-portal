@@ -1,5 +1,5 @@
-import React, { Component, useContext, useEffect, useRef, useState } from 'react'
-import config from "../assets/config.json"
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import config from "../config/config.json"
 import { GlobalContext } from '../context/GlobalContext'
 
 

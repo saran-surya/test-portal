@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { AnswerOption } from './AnswerOption'
 import { GlobalContext } from '../context/GlobalContext'
 import { TimerComponent } from './TimerComponent'
@@ -70,7 +70,7 @@ export const Hompage = () => {
                     <div className='absolute flex w-full h-full items-center justify-center z-10'>
 
                         {(!testActive && !testInit) ?
-                            <div className='text-3xl font-mono font-semibold bg-black text-white w-[60%] h-[60%] rounded-lg p-4 absolute z-10'>
+                            <div className='text-3xl font-mono font-semibold bg-black text-white w-[60%] h-[60%] rounded-2xl shadow-lg p-4 absolute z-10 flex flex-col justify-around'>
                                 <div>Thankyou for Participating</div>
                                 <div>
                                     <div>Final Results</div>
@@ -78,7 +78,7 @@ export const Hompage = () => {
                                 </div>
                             </div>
                             :
-                            <div className='absolute bg-black w-[80%] h-[90%] rounded-xl'>
+                            <div className='absolute bg-black w-[80%] h-[90%] rounded-xl shadow-lg'>
                                 <Introduction />
                             </div>
                         }

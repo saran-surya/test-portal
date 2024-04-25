@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 import Appreducer from './Reducer';
-import questionsObj from "../assets/questions.json"
+import questionsObj from "../config/questions.json"
 
 
 const initialState = {
