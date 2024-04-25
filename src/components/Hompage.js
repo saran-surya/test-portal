@@ -1,44 +1,84 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { AnswerOption } from './AnswerOption'
+import { GlobalContext } from '../context/GlobalContext'
+
 
 export const Hompage = () => {
+
+    let { currQ, allQuestions, totalQuestions, setQ, markedQ, prevQ, nextQ } = useContext(GlobalContext)
+    // console.log(`Home page : `, allQuestions, currQ)
+
+    let qNoOverview = [];
+
+
+    allQuestions.forEach((buffer, index) => {
+        var bufferClassName = `flex items-center justify-center w-8 h-8 rounded-full cursor-pointer font-semibold font-mono `
+
+        buffer = buffer[index + 1]
+        if (currQ == index) {
+            bufferClassName += `bg-blue-500`
+        } else {
+            switch (true) {
+                case buffer.Qstate == 'ANSWERED':
+                    bufferClassName += `bg-green-500`
+                    break
+
+                case buffer.Qstate == 'MARKED':
+                    bufferClassName += `bg-yellow-500`
+                    break
+
+                default:
+                    bufferClassName += `bg-white`
+                    break
+
+            }
+        }
+
+
+
+
+        qNoOverview.push(
+            <div className={bufferClassName} key={index} onClick={(e) => setQ(e.target.innerHTML)}>
+                {index + 1}
+            </div>
+        );
+    });
+
+    let currQObj = allQuestions[currQ]?.[currQ + 1]
+    let answerChoices = []
+
+    for (var i in currQObj?.Choices) {
+        answerChoices.push(
+            <AnswerOption propObj={{
+                Option: i,
+                Marked: currQObj.Marked,
+                Text: currQObj.Choices[i].Text
+            }} />
+        )
+    }
+
+
+
+
     return (
         <div className='bg-slate-500 w-screen min-h-screen'>
             <div className='flex'>
                 {/* Configuration / Questions Area */}
-                <div className='w-1/4 bg-yellow-100 min-h-screen'>
+                <div className='w-1/4 bg-slate-600 min-h-screen'>
                     <div className='flex flex-col h-full items-center justify-evenly'>
                         <div className='text-3xl font-semibold'>
                             Summary
                         </div>
                         <div className='grid grid-cols-5 gap-x-3 gap-y-2'>
-                            <div className='flex items-center justify-center w-8 h-8 bg-green-300 rounded-full'>
-                                1
-                            </div>
-                            <div className='flex items-center justify-center w-8 h-8 bg-green-300 rounded-full'>
-                                2
-                            </div>
-                            <div className='flex items-center justify-center w-8 h-8 bg-green-300 rounded-full'>
-                                3
-                            </div>
-                            <div className='flex items-center justify-center w-8 h-8 bg-green-300 rounded-full'>
-                                4
-                            </div>
-                            <div className='flex items-center justify-center w-8 h-8 bg-green-300 rounded-full'>
-                                5
-                            </div>
-                            <div className='flex items-center justify-center w-8 h-8 bg-green-300 rounded-full'>
-                                6
-                            </div>
-                            <div className='flex items-center justify-center w-8 h-8 bg-green-300 rounded-full'>
-                                7
-                            </div>
+                            {qNoOverview}
                         </div>
 
-                        <div className='flex justify-around w-full'>
-                            <div className='p-4 bg-blue-700 rounded-lg text-white min-w-20'> {"<< Previous"}</div>
-                            <div className='p-4 bg-yellow-500 rounded-lg text-white min-w-20'>Reiview</div>
-                            <div className='p-4 bg-blue-700 rounded-lg text-white min-w-20'>{"Next >>"}</div>
+                        <div className='flex flex-col justify-around w-full select-none font-semibold'>
+                            <div className='flex justify-around'>
+                                <div className='p-4 bg-blue-700 rounded-lg text-white min-w-52 cursor-pointer text-left' onClick={prevQ} > {"<< Previous"}</div>
+                                <div className='p-4 bg-blue-700 rounded-lg text-white min-w-52 cursor-pointer text-right' onClick={nextQ}>{"Next >>"}</div>
+                            </div>
+                            <div className='p-4 bg-yellow-500 rounded-lg cursor-pointer mt-4 mx-4 text-black' onClick={markedQ}>Mark For Review</div>
                         </div>
                     </div>
                 </div>
@@ -53,7 +93,7 @@ export const Hompage = () => {
                             </div>
                             <div className='flex justify-between w-30 items-center'>
                                 <div className='text-xl mx-10'>
-                                    Question X / X
+                                    Question {currQ + 1} / {totalQuestions}
                                 </div>
 
                                 <div className='text-xl mx-10'>
@@ -69,29 +109,13 @@ export const Hompage = () => {
 
                     {/* Question Component */}
                     <div className='flex flex-col items-center justify-center h-[90%]'>
-                        <div className='m-5 p-10 text-xl'>
-                            Some random data for questionsSome random data for questionsSome random data for questionsSome random data for questionsSome random data for questionsSome random data for questionsSome random data for questionsSome random data for questions
-                            Some random data for questionsSome random data for questionsSome random data for questionsSome random data for questionsSome random data for questions
+                        <div className='m-5 p-10 text-xl select-none'>
+                            {currQObj?.Question}
                         </div>
 
                         {/* Answers : Choose between radio and checkbox */}
                         <div className='grid grid-rows-2 grid-cols-2 gap-x-10 gap-y-5 text-xl w-3/4'>
-                            <AnswerOption option={{
-                                Option: 1,
-                                Text: "Passed from the Object - 1"
-                            }} />
-                            <AnswerOption option={{
-                                Option: 2,
-                                Text: "Passed from the Object - 2"
-                            }} />
-                            <AnswerOption option={{
-                                Option: 3,
-                                Text: "Passed from the Object - 3"
-                            }} />
-                            <AnswerOption option={{
-                                Option: 4,
-                                Text: "Passed from the Object - 4"
-                            }} />
+                            {answerChoices}
                         </div>
                     </div>
                 </div>

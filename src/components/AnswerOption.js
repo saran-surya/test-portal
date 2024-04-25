@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalContext'
 
-export const AnswerOption = ({option}) => {
+export const AnswerOption = ({propObj}) => {
 
-    console.log(option)
-    option = (option?.Text && option?.Option) ? option : {Text : "This is a placeholder", Option : 1}
+    let {answerQ} = useContext(GlobalContext)
+
+    // console.log(propObj)
+    propObj = (propObj?.Text && propObj?.Option) ? propObj : {Text : "This is a placeholder", Option : 1}
+    console.log(propObj)
+
+    let answerStyle = `min-h-20 flex items-center px-5 py-2 rounded-lg cursor-pointer select-none ${(propObj.Marked -1 == propObj.Option-1)? `bg-green-500`  : `bg-neutral-50`}`
 
 
     let optionSelect = (e) =>{
-        console.log("The user has selcted the option")
-
-        // Note update state of the answer in the global context
-        console.log(option)
+        answerQ(propObj.Option)
     }
 
     return (
-        <div className='bg-neutral-50 min-h-20 flex items-center px-5 py-2 rounded-lg cursor-pointer hover:bg-slate-200 select-none' onClick={optionSelect}>
-            {option.Text}
+        <div className= {answerStyle} onClick={optionSelect}>
+            {propObj.Text}
         </div>
     )
 }
