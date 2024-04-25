@@ -7,7 +7,6 @@ export const AnswerOption = ({propObj}) => {
 
     // console.log(propObj)
     propObj = (propObj?.Text && propObj?.Option) ? propObj : {Text : "This is a placeholder", Option : 1}
-    console.log(propObj)
 
     let answerStyle = `min-h-20 flex items-center px-5 py-2 rounded-lg cursor-pointer select-none ${(propObj.Marked -1 == propObj.Option-1)? `bg-green-500`  : `bg-neutral-50`}`
 

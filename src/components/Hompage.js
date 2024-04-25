@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { AnswerOption } from './AnswerOption'
 import { GlobalContext } from '../context/GlobalContext'
+import { TimerComponent } from './TimerComponent'
 
 
 export const Hompage = () => {
@@ -66,8 +67,8 @@ export const Hompage = () => {
                 {/* Configuration / Questions Area */}
                 <div className='w-1/4 bg-slate-600 min-h-screen'>
                     <div className='flex flex-col h-full items-center justify-evenly'>
-                        <div className='text-3xl font-semibold'>
-                            Summary
+                        <div className='text-3xl font-semibold text-white'>
+                            Test Summary
                         </div>
                         <div className='grid grid-cols-5 gap-x-3 gap-y-2'>
                             {qNoOverview}
@@ -75,8 +76,8 @@ export const Hompage = () => {
 
                         <div className='flex flex-col justify-around w-full select-none font-semibold'>
                             <div className='flex justify-around'>
-                                <div className='p-4 bg-blue-700 rounded-lg text-white min-w-52 cursor-pointer text-left' onClick={prevQ} > {"<< Previous"}</div>
-                                <div className='p-4 bg-blue-700 rounded-lg text-white min-w-52 cursor-pointer text-right' onClick={nextQ}>{"Next >>"}</div>
+                                <div className='p-4 bg-blue-500 rounded-lg text-white min-w-52 cursor-pointer text-left' onClick={prevQ} > {"<< Previous"}</div>
+                                <div className='p-4 bg-blue-500 rounded-lg text-white min-w-52 cursor-pointer text-right' onClick={nextQ}>{"Next >>"}</div>
                             </div>
                             <div className='p-4 bg-yellow-500 rounded-lg cursor-pointer mt-4 mx-4 text-black' onClick={markedQ}>Mark For Review</div>
                         </div>
@@ -97,7 +98,7 @@ export const Hompage = () => {
                                 </div>
 
                                 <div className='text-xl mx-10'>
-                                    Timer
+                                    <TimerComponent/>
                                 </div>
 
                                 <div className='text-xl bg-green-300 p-2 rounded-md mx-10 cursor-pointer'>
