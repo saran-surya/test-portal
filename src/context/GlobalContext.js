@@ -7,6 +7,9 @@ const initialState = {
     currQ: 0,
     allQuestions: [],
     totalQuestions: 0,
+    testActive : false,
+    testInit : true,
+    totalScore : 0
 }
 
 export const GlobalContext = createContext(initialState)
@@ -42,7 +45,8 @@ export const GlobalProvider = ({ children }) => {
 
     }
     function setQ(qNo) {
-        console.log(Number(qNo))
+        if(!(state.testActive)) return
+
         dispatch({
             type: 'SET-Q',
             payload: Number(qNo) - 1
@@ -50,24 +54,32 @@ export const GlobalProvider = ({ children }) => {
     }
 
     function nextQ() {
+        if(!(state.testActive)) return
+
         if (state.currQ + 1 < state.totalQuestions) {
             setQ(state.currQ + 2)
         }
     }
 
     function prevQ() {
+        if(!(state.testActive)) return
+
         if (state.currQ - 1 >= 0) {
             setQ(state.currQ)
         }
     }
 
     function markedQ() {
+        if(!(state.testActive)) return
+
         dispatch({
             type: 'MARKED-Q',
         })
     }
 
     function answerQ(option) {
+        if(!(state.testActive)) return
+
         console.log(state.allQuestions[state.currQ][(state.currQ) + 1].Marked)
 
         dispatch({
@@ -77,6 +89,8 @@ export const GlobalProvider = ({ children }) => {
     }
 
     function submitTest() {
+        if(!(state.testActive)) return
+
         // grade assesment and show popup
         let score = 0
 
@@ -94,17 +108,26 @@ export const GlobalProvider = ({ children }) => {
 
         console.log("total - score", score)
 
+        // set test-active to false
         dispatch({
-            type: 'NEXT-Q',
-            payload: 1
+            type: 'SUBMIT-TEST',
+            payload : score
         })
     }
 
     return (
         <GlobalContext.Provider value={{
+            // Toggle states of the test
+            testActive: state.testActive,
+            testInit : state.testInit,
+
+            // Test Objects
             currQ: state.currQ,
             allQuestions: state.allQuestions,
             totalQuestions: state.totalQuestions,
+            totalScore: state.totalScore,
+
+            // helper functions
             renderQuestions,
             setQ,
             nextQ,

@@ -5,6 +5,8 @@ let reducer = (state, action) => {
             console.log(action.payload)
             state.allQuestions = action.payload
             state.totalQuestions = (action.payload).length
+            state.testActive = true
+            state.testInit = false
             return {
                 ...state
             }
@@ -17,20 +19,6 @@ let reducer = (state, action) => {
             }
         }
 
-        case 'NEXT-Q':
-            // console.log('Moving to next question')
-            state.qNo = action.payload
-            return {
-                ...state
-            }
-
-        case 'PREV-Q':
-            // console.log('Moving to previous question')
-            console.log(action.payload)
-            state.qNo = action.payload
-            return {
-                ...state
-            }
 
         case 'MARKED-Q':
             // console.log('Marking question for review')
@@ -51,6 +39,8 @@ let reducer = (state, action) => {
 
         case 'SUBMIT-TEST': {
             // console.log("Submitting the test assesment")
+            state.testActive = false
+            state.totalScore = action.payload
             console.log(action.payload)
 
             return {

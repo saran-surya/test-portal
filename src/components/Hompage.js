@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AnswerOption } from './AnswerOption'
 import { GlobalContext } from '../context/GlobalContext'
 import { TimerComponent } from './TimerComponent'
+import { Introduction } from './Introduction'
 
 
 export const Hompage = () => {
 
-    let { currQ, allQuestions, totalQuestions, setQ, markedQ, prevQ, nextQ } = useContext(GlobalContext)
+    let { currQ, allQuestions, totalQuestions, setQ, markedQ, prevQ, nextQ, submitTest, testInit, testActive, totalScore } = useContext(GlobalContext)
     // console.log(`Home page : `, allQuestions, currQ)
 
     let qNoOverview = [];
@@ -62,65 +63,93 @@ export const Hompage = () => {
 
 
     return (
-        <div className='bg-slate-500 w-screen min-h-screen'>
-            <div className='flex'>
-                {/* Configuration / Questions Area */}
-                <div className='w-1/4 bg-slate-600 min-h-screen'>
-                    <div className='flex flex-col h-full items-center justify-evenly'>
-                        <div className='text-3xl font-semibold text-white'>
-                            Test Summary
-                        </div>
-                        <div className='grid grid-cols-5 gap-x-3 gap-y-2'>
-                            {qNoOverview}
-                        </div>
+        <div className='bg-slate-500 w-screen min-h-screen select-none'>
 
-                        <div className='flex flex-col justify-around w-full select-none font-semibold'>
-                            <div className='flex justify-around'>
-                                <div className='p-4 bg-blue-500 rounded-lg text-white min-w-52 cursor-pointer text-left' onClick={prevQ} > {"<< Previous"}</div>
-                                <div className='p-4 bg-blue-500 rounded-lg text-white min-w-52 cursor-pointer text-right' onClick={nextQ}>{"Next >>"}</div>
-                            </div>
-                            <div className='p-4 bg-yellow-500 rounded-lg cursor-pointer mt-4 mx-4 text-black' onClick={markedQ}>Mark For Review</div>
-                        </div>
-                    </div>
-                </div>
+            {(testInit || !testActive) ?
+                <>
+                    <div className='absolute flex w-full h-full items-center justify-center z-10'>
 
-                {/* Main Work Area */}
-                <div className='w-3/4 bg-cyan-200'>
-                    {/* Header Component */}
-                    <div className='flex flex-col'>
-                        <div className='bg-red-500 flex p-2 items-center justify-between h-[10%]'>
-                            <div className='text-2xl'>
-                                A Really Long Company Name
-                            </div>
-                            <div className='flex justify-between w-30 items-center'>
-                                <div className='text-xl mx-10'>
-                                    Question {currQ + 1} / {totalQuestions}
-                                </div>
-
-                                <div className='text-xl mx-10'>
-                                    <TimerComponent/>
-                                </div>
-
-                                <div className='text-xl bg-green-300 p-2 rounded-md mx-10 cursor-pointer'>
-                                    Submit
+                        {(!testActive && !testInit) ?
+                            <div className='text-3xl font-mono font-semibold bg-black text-white w-[60%] h-[60%] rounded-lg p-4 absolute z-10'>
+                                <div>Thankyou for Participating</div>
+                                <div>
+                                    <div>Final Results</div>
+                                    <div>Test Score : {totalScore} / {totalQuestions} </div>
                                 </div>
                             </div>
+                            :
+                            <div className='absolute bg-black w-[80%] h-[90%] rounded-xl'>
+                                <Introduction />
+                            </div>
+                        }
+                    </div>
+                </>
+                :
+                <>
+                    <div className={(testInit || !testActive) ? 'flex blur-2xl' : 'flex'}>
+                        {/* Configuration / Questions Area */}
+                        <div className='w-1/4 bg-slate-700 min-h-screen'>
+                            <div className='flex flex-col h-full items-center justify-evenly'>
+                                <div className='text-3xl font-semibold text-white'>
+                                    Test Summary
+                                </div>
+                                <div className='grid grid-cols-5 gap-x-3 gap-y-2'>
+                                    {qNoOverview}
+                                </div>
+
+
+                                <div className='flex flex-col justify-around w-full select-none font-semibold'>
+                                    <div className='flex justify-around'>
+                                        <div className='p-4 bg-blue-500 rounded-lg text-white min-w-52 cursor-pointer text-left' onClick={prevQ} > {"<< Previous"}</div>
+                                        <div className='p-4 bg-blue-500 rounded-lg text-white min-w-52 cursor-pointer text-right' onClick={nextQ}>{"Next >>"}</div>
+                                    </div>
+                                    <div className='p-4 bg-yellow-500 rounded-lg cursor-pointer mt-4 mx-4 text-black' onClick={markedQ}>Mark For Review</div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        {/* Main Work Area */}
+                        <div className='w-3/4 bg-slate-300'>
+                            {/* Header Component */}
+                            <div className='flex flex-col'>
+                                <div className='bg-yellow-500 flex p-2 items-center justify-between h-[10%] font-semibold'>
+                                    <div className='text-2xl'>
+                                        A Really Long Company Name
+                                    </div>
+                                    <div className='flex justify-between w-30 items-center'>
+                                        <div className='text-xl mx-10'>
+                                            Question {currQ + 1} / {totalQuestions}
+                                        </div>
+
+                                        <div className='text-xl mx-10'>
+                                            <TimerComponent />
+                                        </div>
+
+                                        <div className='text-xl bg-green-600 p-2 rounded-md mx-10 cursor-pointer text-white' onClick={submitTest}>
+                                            Submit
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Question Component */}
+                            <div className='flex flex-col items-center justify-center h-[90%]'>
+                                <div className='m-5 p-10 text-2xl select-none font-semibold'>
+                                    {currQObj?.Question}
+                                </div>
+
+                                {/* Answers : Choose between radio and checkbox */}
+                                <div className='grid grid-rows-2 grid-cols-2 gap-x-10 gap-y-5 text-xl w-3/4'>
+                                    {answerChoices}
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-
-                    {/* Question Component */}
-                    <div className='flex flex-col items-center justify-center h-[90%]'>
-                        <div className='m-5 p-10 text-xl select-none'>
-                            {currQObj?.Question}
-                        </div>
-
-                        {/* Answers : Choose between radio and checkbox */}
-                        <div className='grid grid-rows-2 grid-cols-2 gap-x-10 gap-y-5 text-xl w-3/4'>
-                            {answerChoices}
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </>
+            }
         </div>
     )
 }

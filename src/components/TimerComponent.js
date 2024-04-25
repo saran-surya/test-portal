@@ -5,7 +5,7 @@ import { GlobalContext } from '../context/GlobalContext'
 
 export const TimerComponent = () => {
 
-    let { totalQuestions, submitTest } = useContext(GlobalContext)
+    let { submitTest, testActive } = useContext(GlobalContext)
 
     // We need ref in this, because we are dealing
     // with JS setInterval to keep track of it and
@@ -62,15 +62,19 @@ export const TimerComponent = () => {
         clearTimer(getDeadTime());
     }, []);
 
-    useEffect(()=>{
-        console.log(timer)
-        if(timer == "00:00"){
-            console.log("Performing submit")
+    useEffect(() => {
+        if (timer == "00:00") {
             submitTest()
         }
     }, [timer])
 
     return (
-        <div>{timer}</div>
+        <>
+        {(testActive) ? 
+            <div>{timer}</div>
+            :
+            <>00 : 00</>
+        }
+        </>
     )
 }
