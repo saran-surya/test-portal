@@ -1,128 +1,132 @@
 {
-    "1" : {
-        "Question" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
-        "Choices" : {
-            "1" : {
-                "Text" : "Solution 1",
-                "Score" : "1"
-            },
-            "2" : {
-                "Text" : "Solution 2",
-                "Score" : "0"
-            },
-            "3" : {
-                "Text" : "Solution 3",
-                "Score" : "0"
-            },
-            "4" : {
-                "Text" : "Solution 4",
-                "Score" : "0"
+    "Aptitude": {
+        "1": {
+            "Question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
+            "Choices": {
+                "1": {
+                    "Text": "Solution 1",
+                    "Score": "1"
+                },
+                "2": {
+                    "Text": "Solution 2",
+                    "Score": "-0.25"
+                },
+                "3": {
+                    "Text": "Solution 3",
+                    "Score": "-0.25"
+                },
+                "4": {
+                    "Text": "Solution 4",
+                    "Score": "-0.25"
+                }
             }
-        }  
+        },
+        "2": {
+            "Question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
+            "Choices": {
+                "1": {
+                    "Text": "Solution 2-1",
+                    "Score": "1"
+                },
+                "2": {
+                    "Text": "Solution 2-2",
+                    "Score": "-0.25"
+                },
+                "3": {
+                    "Text": "Solution 2-3",
+                    "Score": "-0.25"
+                },
+                "4": {
+                    "Text": "Solution 2-4",
+                    "Score": "-0.25"
+                }
+            }
+        },
+        "3": {
+            "Question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
+            "Choices": {
+                "1": {
+                    "Text": "Solution 1",
+                    "Score": "1"
+                },
+                "2": {
+                    "Text": "Solution 2",
+                    "Score": "-0.25"
+                },
+                "3": {
+                    "Text": "Solution 3",
+                    "Score": "-0.25"
+                },
+                "4": {
+                    "Text": "Solution 4",
+                    "Score": "-0.25"
+                }
+            }
+        }
     },
-    "2" : {
-        "Question" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
-        "Choices" : {
-            "1" : {
-                "Text" : "Solution 2-1",
-                "Score" : "1"
-            },
-            "2" : {
-                "Text" : "Solution 2-2",
-                "Score" : "0"
-            },
-            "3" : {
-                "Text" : "Solution 2-3",
-                "Score" : "1"
-            },
-            "4" : {
-                "Text" : "Solution 2-4",
-                "Score" : "0"
+    "Reasoning": {
+        "4": {
+            "Question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
+            "Choices": {
+                "1": {
+                    "Text": "Solution 1",
+                    "Score": "1"
+                },
+                "2": {
+                    "Text": "Solution 2",
+                    "Score": "-0.25"
+                },
+                "3": {
+                    "Text": "Solution 3",
+                    "Score": "-0.25"
+                },
+                "4": {
+                    "Text": "Solution 4",
+                    "Score": "-0.25"
+                }
             }
-        }  
-    },
-    "3" : {
-        "Question" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
-        "Choices" : {
-            "1" : {
-                "Text" : "Solution 1",
-                "Score" : "1"
-            },
-            "2" : {
-                "Text" : "Solution 2",
-                "Score" : "0"
-            },
-            "3" : {
-                "Text" : "Solution 3",
-                "Score" : "0"
-            },
-            "4" : {
-                "Text" : "Solution 4",
-                "Score" : "0"
+        },
+        "5": {
+            "Question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
+            "Choices": {
+                "1": {
+                    "Text": "Solution 1",
+                    "Score": "1"
+                },
+                "2": {
+                    "Text": "Solution 2",
+                    "Score": "0"
+                },
+                "3": {
+                    "Text": "Solution 3",
+                    "Score": "0"
+                },
+                "4": {
+                    "Text": "Solution 4",
+                    "Score": "0"
+                }
             }
-        }  
-    },
-    "4" : {
-        "Question" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
-        "Choices" : {
-            "1" : {
-                "Text" : "Solution 1",
-                "Score" : "1"
-            },
-            "2" : {
-                "Text" : "Solution 2",
-                "Score" : "0"
-            },
-            "3" : {
-                "Text" : "Solution 3",
-                "Score" : "0"
-            },
-            "4" : {
-                "Text" : "Solution 4",
-                "Score" : "0"
+        },
+        "6": {
+            "Question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
+            "Choices": {
+                "1": {
+                    "Text": "Solution 1",
+                    "Score": "1"
+                },
+                "2": {
+                    "Text": "Solution 2",
+                    "Score": "0"
+                },
+                "3": {
+                    "Text": "Solution 3",
+                    "Score": "0"
+                },
+                "4": {
+                    "Text": "Solution 4",
+                    "Score": "0"
+                }
             }
-        }  
-    },
-    "5" : {
-        "Question" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
-        "Choices" : {
-            "1" : {
-                "Text" : "Solution 1",
-                "Score" : "1"
-            },
-            "2" : {
-                "Text" : "Solution 2",
-                "Score" : "0"
-            },
-            "3" : {
-                "Text" : "Solution 3",
-                "Score" : "0"
-            },
-            "4" : {
-                "Text" : "Solution 4",
-                "Score" : "0"
-            }
-        }  
-    },
-    "6" : {
-        "Question" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis egestas urna, a imperdiet tellus lacinia vel. Nullam accumsan et augue",
-        "Choices" : {
-            "1" : {
-                "Text" : "Solution 1",
-                "Score" : "1"
-            },
-            "2" : {
-                "Text" : "Solution 2",
-                "Score" : "0"
-            },
-            "3" : {
-                "Text" : "Solution 3",
-                "Score" : "0"
-            },
-            "4" : {
-                "Text" : "Solution 4",
-                "Score" : "0"
-            }
-        }  
+        }
     }
 }

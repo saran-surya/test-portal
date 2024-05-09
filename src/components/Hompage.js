@@ -7,10 +7,94 @@ import { Introduction } from './Introduction'
 
 export const Hompage = () => {
 
-    let { currQ, allQuestions, totalQuestions, setQ, markedQ, prevQ, nextQ, submitTest, testInit, testActive, totalScore } = useContext(GlobalContext)
+    let {
+        currQ, allQuestions, totalQuestions, setQ, markedQ, prevQ, nextQ, submitTest, testInit, testActive, totalScore,
+        correctAnswers,
+        wrongAnswers,
+        unAnswered,
+        sections
+    } = useContext(GlobalContext)
     // console.log(`Home page : `, allQuestions, currQ)
 
     let qNoOverview = [];
+
+
+    let section1 = []
+
+    let section2 = []
+
+    console.log(`sections in total : `, sections)
+
+    let sectionName = <div>Section name</div>
+
+    let qno = 1;
+    for (var i in sections) {
+        qNoOverview.push(i);
+            (sections[i]).forEach((buffer, index) => {
+                var bufferClassName = `flex items-center justify-center w-8 h-8 rounded-full cursor-pointer font-semibold font-mono `
+                
+                buffer = buffer[index + 1]
+                console.log(buffer)
+                if (currQ == index) {
+                    bufferClassName += `bg-blue-500`
+                } else {
+                    switch (true) {
+                        case buffer?.Qstate == 'ANSWERED':
+                            bufferClassName += `bg-green-500`
+                            break
+
+                        case buffer?.Qstate == 'MARKED':
+                            bufferClassName += `bg-yellow-500`
+                            break
+
+                        default:
+                            bufferClassName += `bg-white`
+                            break
+
+                    }
+                }
+                qNoOverview.push(<div className={bufferClassName} key={qno} onClick={(e) => setQ(e.target.innerHTML)}>
+                    {qno}
+                </div>)
+                qno += 1
+                // console.log(sections[i])
+            })
+    }
+    console.log("Questions overview :  ", qNoOverview)
+
+    // sections.forEach((buffer, index) => {
+    // console.log("Section buffer - ", buffer)
+    // var bufferClassName = `flex items-center justify-center w-8 h-8 rounded-full cursor-pointer font-semibold font-mono `
+    // let sectionBuffer = []
+
+    // buffer = buffer[index + 1]
+    // if (currQ == index) {
+    //     bufferClassName += `bg-blue-500`
+    // } else {
+    //     switch (true) {
+    //         case buffer.Qstate == 'ANSWERED':
+    //             bufferClassName += `bg-green-500`
+    //             break
+
+    //         case buffer.Qstate == 'MARKED':
+    //             bufferClassName += `bg-yellow-500`
+    //             break
+
+    //         default:
+    //             bufferClassName += `bg-white`
+    //             break
+
+    //     }
+    // }
+
+    // sectionBuffer.push(
+    //     <div className={bufferClassName} key={index} onClick={(e) => setQ(e.target.innerHTML)}>
+    //         {index + 1}
+    //     </div>
+    // )
+    // })
+
+
 
 
     allQuestions.forEach((buffer, index) => {
@@ -35,16 +119,25 @@ export const Hompage = () => {
 
             }
         }
-
-
-
-
-        qNoOverview.push(
-            <div className={bufferClassName} key={index} onClick={(e) => setQ(e.target.innerHTML)}>
+        if (index < 3) {
+            section1.push(<div className={bufferClassName} key={index} onClick={(e) => setQ(e.target.innerHTML)}>
                 {index + 1}
-            </div>
-        );
+            </div>)
+        } else {
+            section2.push(<div className={bufferClassName} key={index} onClick={(e) => setQ(e.target.innerHTML)}>
+                {index + 1}
+            </div>)
+        }
+        // qNoOverview.push(
+        //     <div className={bufferClassName} key={index} onClick={(e) => setQ(e.target.innerHTML)}>
+        //         {index + 1}
+        //     </div>
+        // );
     });
+
+
+
+
 
     let currQObj = allQuestions[currQ]?.[currQ + 1]
     let answerChoices = []
@@ -74,6 +167,10 @@ export const Hompage = () => {
                                 <div>Thankyou for Participating</div>
                                 <div>
                                     <div>Final Results</div>
+                                    <div>Answered Questions : {totalQuestions - unAnswered}</div>
+                                    <div>Correct Answers : {correctAnswers} </div>
+                                    <div>Wrong Answers : {wrongAnswers} </div>
+                                    <div>Unanswered Questions : {unAnswered} </div>
                                     <div>Test Score : {totalScore} / {totalQuestions} </div>
                                 </div>
                             </div>
@@ -93,6 +190,7 @@ export const Hompage = () => {
                                 <div className='text-3xl font-semibold text-white'>
                                     Test Summary
                                 </div>
+
                                 <div className='grid grid-cols-5 gap-x-3 gap-y-2'>
                                     {qNoOverview}
                                 </div>

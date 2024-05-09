@@ -2,8 +2,10 @@ let reducer = (state, action) => {
     switch (action.type) {
         case 'SET-INITIAL':
             // console.log("Rendering-down and setting the questions")
-            state.allQuestions = action.payload
-            state.totalQuestions = (action.payload).length
+
+            state.allQuestions = action.payload.allQuestions
+            state.totalQuestions = (action.payload.allQuestions).length
+            state.sections = action.payload.sections
             state.testActive = true
             state.testInit = false
             return {
@@ -39,7 +41,13 @@ let reducer = (state, action) => {
         case 'SUBMIT-TEST': {
             // console.log("Submitting the test assesment")
             state.testActive = false
-            state.totalScore = action.payload
+            state.totalScore = action.payload.totalScore
+
+            state.correctAnswers = action.payload.correctAnswers
+            state.wrongAnswers = action.payload.wrongAnswers
+            state.unAnswered =  action.payload.unAnswered
+
+            console.log(action.payload)
 
             return {
                 ...state
